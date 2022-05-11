@@ -30,6 +30,9 @@ on init
     write /dev/cpuset/background/cpus 0-2
     write /dev/cpuset/system-background/cpus 0-3
 
+# tune stune for top-app
+    write /dev/stune/top-app/schedtune.boost 1
+
 on init   
     # Force disable ViLTE support
     setprop persist.vendor.vilte_support 0
