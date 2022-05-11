@@ -24,17 +24,9 @@ echo 1 -1 > /proc/ppm/policy/hard_userlimit_max_cpu_freq # LITTLE cluster
 # lock gpu freq
 echo 0 > /proc/gpufreq/gpufreq_opp_freq
 
-# set sched to hybrid (HMP,EAS)
-echo 2 > /sys/devices/system/cpu/eas/enable
-
 # schedutil rate-limit
 echo 10000 > /sys/devices/system/cpu/cpufreq/schedutil/down_rate_limit_us
 echo 10000 > /sys/devices/system/cpu/cpufreq/schedutil/up_rate_limit_us
-
-# cpusets
-echo 0-3 > /dev/cpuset/background/cpus
-echo 0-5 > /dev/cpuset/system-background/cpus
-echo 0-7 > /dev/cpuset/restricted/cpus
 
 # oppo touchpanel
 echo 1 > /proc/touchpanel/oppo_tp_limit_enable
@@ -64,9 +56,6 @@ case $1 in
 
 	echo 3 > /proc/cpufreq/cpufreq_power_mode
 	echo 1 > /proc/cpufreq/cpufreq_cci_mode
-
-	# force sched to EAS
-	echo 1 > /sys/devices/system/cpu/eas/enable
 
 	echo 50000 > /sys/devices/system/cpu/cpufreq/schedutil/down_rate_limit_us
 	echo 0 > /sys/devices/system/cpu/cpufreq/schedutil/up_rate_limit_us
